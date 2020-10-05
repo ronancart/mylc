@@ -15,3 +15,26 @@ return curr
 
 
 #leetcode 413
+        n=len(A)
+        if n <3:
+            return 0
+        dif = {}
+        dif[0]=A[1]-A[0]
+        dp=[0]*n
+        for i in range(2,n):
+            dif[i-1]=A[i]-A[i-1]
+            if dif[i-1]==dif[i-2]:
+                dp[i]=dp[i-1]+1
+        return sum(dp)
+
+
+#二维
+#leetcode 64
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                if i==j==0:continue
+                elif i==0:grid[i][j]=grid[i][j-1]+grid[i][j]
+                elif j==0:grid[i][j]=grid[i-1][j]+grid[i][j]
+                else:
+                    grid[i][j]=min(grid[i][j-1],grid[i-1][j])+grid[i][j]
+        return grid[-1][-1]
